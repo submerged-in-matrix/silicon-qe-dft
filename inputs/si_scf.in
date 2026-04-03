@@ -1,0 +1,34 @@
+&CONTROL
+    calculation = 'scf',
+    prefix = 'si',
+    pseudo_dir = './pseudo/',
+    outdir = './tmp/'
+/
+
+&SYSTEM
+    ibrav = 2,
+    celldm(1) = 10.26,
+    nat = 2,
+    ntyp = 1,
+    ecutwfc = 40.0,
+    ecutrho = 320.0,
+    occupations = 'fixed'
+/
+
+&ELECTRONS
+    conv_thr = 1.0d-8,
+    electron_maxstep = 300,
+    mixing_beta = 0.3,
+    diagonalization = 'cg'
+
+/
+
+ATOMIC_SPECIES
+Si  28.0855  Si.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS crystal
+Si  0.00  0.00  0.00
+Si  0.25  0.25  0.25
+
+K_POINTS automatic
+6 6 6 0 0 0
