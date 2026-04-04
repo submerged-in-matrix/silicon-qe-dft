@@ -28,7 +28,12 @@ Where:
 - Crystal structure: Diamond cubic
 - Atoms per unit cell: 2
 - Pseudopotential: PBE (Perdew–Burke–Ernzerhof, a GGA functional)
-- Method: Plane-wave basis + PAW (Projector Augmented Wave, a method that reconstructs accurate all-electron wavefunctions from smooth pseudo-wavefunctions by treating core and valence electrons efficiently within a plane-wave framework)
+                 - a GGA (Generalized Gradient Approximation) exchange–correlation functional that includes not only the local electron density (as in Local Density Approximation (LDA)) but also its spatial gradient, 
+                 - allowing it to better capture variations in real materials; as a result, PBE typically improves lattice constants, binding energies, and structural properties over LDA, 
+                 - which tends to overbind and underestimate interatomic distances.
+- Method: Plane-wave basis + PAW (Projector Augmented Wave, 
+          - a method that reconstructs accurate all-electron wavefunctions from smooth pseudo-wavefunctions, 
+          - by treating core and valence electrons efficiently within a plane-wave framework)
 
 ---
 
