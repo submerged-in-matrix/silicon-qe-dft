@@ -12,7 +12,8 @@
     ntyp = 1,
     ecutwfc = 40.0,
     ecutrho = 320.0,
-    occupations = 'fixed'
+    occupations = 'fixed',
+    nbnd = 8 ! forcing QE to compute eigen-values for the empty states
 /
 
 &ELECTRONS
