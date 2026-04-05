@@ -1,4 +1,4 @@
-# Silicon DFT Workflow using Quantum ESPRESSO
+# Silicon_band_Structure DFT Workflow using Quantum ESPRESSO (functional used: PBE)
 
 ## Objective
 
