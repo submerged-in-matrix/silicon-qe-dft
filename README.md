@@ -7,7 +7,8 @@ Perform a complete Density Functional Theory (DFT) workflow for bulk silicon to:
 - obtain the electronic ground state  
 - optimize the crystal structure  
 - compute band structure and density of states  
-- extract and interpret the band gap  
+- extract and interpret the band gap
+- PDOS calculation to see the hybridization
 
 ---
 
@@ -86,7 +87,11 @@ Computed DOS using a dense k-point sampling (NSCF → dos.x).
 - PBE-DFT underestimates band gap compared to experiment (~1.1 eV), as expected  
 
 ---
+## PDOS
 
+The PDOS calculation used 8 atomic projector functions for the 2-atom Si cell: one s and three p projectors per atom. The projection analysis shows that the lowest Gamma-point valence state is predominantly s-like and symmetrically distributed over both Si atoms, while the higher threefold-degenerate states are predominantly p-like. Löwdin population analysis gives about 3.96 projected valence electrons per Si atom, with approximately 1.17 s-like and 2.79 p-like character, and a small spilling parameter of 0.009, indicating a high-quality projection basis.
+
+---
 ## Project Structure
 
 inputs/ → Quantum ESPRESSO input files
@@ -113,7 +118,8 @@ notes/ → detailed physics and methodology notes
 - k-space sampling and high-symmetry path selection  
 - Extraction and validation of band gap  
 - Complementary roles of band structure and DOS  
-- Limitations of semi-local DFT (PBE)  
+- Limitations of semi-local DFT (PBE)
+-  PDOS/projection output confirms the chemical picture of silicon (SP3 Hybridization) almost accurately, since the spilling parameter was found to be 0.009
 
 ---
 
