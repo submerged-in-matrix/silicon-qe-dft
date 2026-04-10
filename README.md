@@ -1,9 +1,9 @@
 # Electronic Structure analysis of Si using DFT (Quantum ESPRESSO, PBE)! This project aims at proving the claimed underestimation of PBE exchange correlation functional in calculating the observable 'band-gap'. 
-## Objective
+## Objectives
 
 Perform a complete Density Functional Theory (DFT) workflow for bulk silicon to:
 
-- obtain the electronic ground state
+- obtain the electronic ground state 
 - optimize the crystal structure
 - compute band structure and density of states (DOS)
 - extract and interpret the band gap
