@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.loadtxt("si_dos.dat", comments="#")
+data = np.loadtxt("dft_data/si_dos.dat", comments="#")
 
 energy = data[:, 0]
 dos = data[:, 1]

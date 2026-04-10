@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.loadtxt("si_charge_slice.dat")
+data = np.loadtxt("dft_data/si_charge_slice.dat")
 
 x = data[:, 0]
 y = data[:, 1]

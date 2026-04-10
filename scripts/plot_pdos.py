@@ -10,12 +10,11 @@ FERMI = 0.0
 # ---------------------------------
 # input files
 # ---------------------------------
-total_file = "si.pdos_tot"
-s1_file = "si.pdos_atm#1(Si)_wfc#1(s)"
-s2_file = "si.pdos_atm#2(Si)_wfc#1(s)"
-p1_file = "si.pdos_atm#1(Si)_wfc#2(p)"
-p2_file = "si.pdos_atm#2(Si)_wfc#2(p)"
-
+total_file = "dft_data/si.pdos_tot"
+s1_file = "dft_data/si.pdos_atm#1(Si)_wfc#1(s)"
+s2_file = "dft_data/si.pdos_atm#2(Si)_wfc#1(s)"
+p1_file = "dft_data/si.pdos_atm#1(Si)_wfc#2(p)"
+p2_file = "dft_data/si.pdos_atm#2(Si)_wfc#2(p)"
 # ---------------------------------
 # read data
 # ---------------------------------

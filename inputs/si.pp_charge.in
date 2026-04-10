@@ -12,5 +12,5 @@
     weight(1) = 1.0,
     iflag = 3, !dimensionality/type of output grid
     output_format = 5, !output file format, here (=5) .xsf format for XCrysDen ; (=6) Gaussian cube format
-    fileout = 'si_charge.xsf'
+    fileout = 'dft_data/si_charge.xsf'
 /
