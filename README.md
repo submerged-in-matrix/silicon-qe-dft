@@ -134,6 +134,7 @@ Interpretation:
 ![DOS](results/si_dos.png)
 
 *Figure: Total density of states (DOS) of silicon. A clear energy region with zero states is observed between the valence and conduction bands, confirming a band gap of ~0.6 eV consistent with the band structure.*
+
 ---
 
 ### Projected Density of States (PDOS)
@@ -174,12 +175,11 @@ Combined analysis:
 ---
 
 ## Project Structure
-inputs/ → QE input files
-outputs/ → raw outputs
-pseudo/ → pseudopotentials
-results/ → plots and figures
-notes/ → detailed methodology notes
-scripts/ → plotting scripts
+- inputs/ → QE input files
+- outputs/ → raw outputs
+- pseudo/ → pseudopotentials
+- results/ → plots and figures, detailed results
+- scripts/ → plotting scripts
 ---
 
 
@@ -212,5 +212,14 @@ scripts/ → plotting scripts
 - Charge density is total (not difference density)
 
 ---
+## Detailed Results
 
+For step-by-step analysis and interpretation:
+
+- [Band Structure](results/band_structure.md)
+- [Density of States (DOS)](results/dos.md)
+- [Projected Density of States (PDOS)](results/pdos.md)
+- [Charge Density & Bonding Analysis](results/charge_density.md)
+
+  
 **Md. Saidul Islam**  
