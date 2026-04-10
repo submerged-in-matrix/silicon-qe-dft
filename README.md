@@ -1,128 +1,216 @@
-# Silicon Electronic Structure DFT Workflow using Quantum ESPRESSO (PBE)
+# Silicon Electronic Structure using DFT (Quantum ESPRESSO, PBE)
 
 ## Objective
 
 Perform a complete Density Functional Theory (DFT) workflow for bulk silicon to:
 
-- obtain the electronic ground state  
-- optimize the crystal structure  
-- compute band structure and density of states  
+- obtain the electronic ground state
+- optimize the crystal structure
+- compute band structure and density of states (DOS)
 - extract and interpret the band gap
-- PDOS calculation to see the hybridization
+- analyze orbital contributions via PDOS
+- investigate bonding using charge density
 
 ---
 
-## Workflow Overview
+## Methodology
 
 ### 1. SCF (Self-Consistent Field)
 
-Solved the Kohn–Sham equations to obtain the ground-state electron density:
+Solved the Kohn–Sham equations:
 
-Ĥ ψ_i = ε_i ψ_i  
+Ĥ ψ_i = ε_i ψ_i
 
-**Key result:**
-- Total energy: -93.45138 Ry  
-- Converged electron density  
+Result:
+- Converged electron density ρ(r)
+- Total energy: **−93.45138 Ry**
 
 ---
 
-### 2. Variable-Cell Relaxation (vc-relax)
+### 2. Structural Optimization (vc-relax)
 
-Optimized atomic positions and lattice parameter by minimizing total energy:
+Minimized total energy with respect to atomic positions and cell:
 
-F_i = -∂E/∂R_i  
+F_i = −∂E/∂R_i  
 σ = ∂E/∂cell  
 
-**Key result:**
-- Lattice parameter: ~5.47 Å  
-- Negligible forces and stress (equilibrium structure)  
+Result:
+- Lattice parameter ≈ **5.47 Å**
+- Negligible forces and stress
 
 ---
 
-### 3. Band Structure Calculation
+### 3. Band Structure
 
-Computed energy dispersion \(E(k)\) along the high-symmetry path:
+Computed E(k) along high-symmetry path:
 
-L → Γ → X → W → K  
+L → Γ → X → W → K
 
-**Key concepts:**
-- Bloch theorem  
-- Brillouin zone sampling  
+Concepts:
+- Bloch theorem
+- Brillouin zone sampling
 
 ---
 
-### 4. Band Gap Extraction
+### 4. Band Gap
 
-Band gap determined from:
+Eg = E_CBM − E_VBM
 
-Eg = E_CBM − E_VBM  
-
-**Results:**
-- VBM ≈ 0 eV (at Γ)  
-- CBM ≈ 0.609 eV (along Γ–X)  
-- Band gap ≈ **0.61 eV**  
+Results:
+- VBM ≈ 0 eV (Γ)
+- CBM ≈ 0.609 eV (Γ–X)
+- **Eg ≈ 0.61 eV (indirect)**
 
 ---
 
 ### 5. Density of States (DOS)
 
-Computed DOS using a dense k-point sampling (NSCF → dos.x).
+Computed using NSCF + `dos.x`.
 
-**Key observations:**
-- Valence band: high DOS below 0 eV  
-- Band gap: region with D(E) ≈ 0  
-- Conduction band: states above ~0.6 eV  
+Observations:
+- Valence band: populated states below 0 eV
+- Band gap: D(E) ≈ 0 region
+- Conduction band: states above ~0.6 eV
 
-**Result:**
-- DOS confirms band gap ≈ 0.6 eV  
-- Consistent with band structure  
+Result:
+- DOS confirms **Eg ≈ 0.6 eV**
+
+---
+
+### 6. Projected Density of States (PDOS)
+
+Computed using `projwfc.x`.
+
+Key findings:
+
+- Lower valence region → stronger **s-character**
+- Upper valence + conduction → dominant **p-character**
+- Significant orbital mixing across energy range
+
+Löwdin charges per Si atom:
+- total ≈ 3.96
+- s ≈ 1.17
+- p ≈ 2.79
+
+Spilling parameter:
+- **0.009 
+
+Interpretation:
+- Electronic states are hybridized
+- Consistent with **sp³ bonding**
+
+---
+
+### 7. Charge Density & Bonding Analysis
+
+#### 3D Isosurface (XCrySDen)
+
+- Charge density forms continuous, non-spherical regions
+- Density extends between neighboring atoms
+
+#### 2D Slice (Bond Plane)
+
+- Plane passes through Si–Si bond
+- Shows continuous charge density between atoms
+
+Interpretation:
+- electrons are shared between atoms
+- bonding is **directional and covalent**
+
+---
+
+## Results
+
+### Band Structure
+
+![Band structure](results/si_band_structure.png)
+
+*Figure: Electronic band structure of silicon along the high-symmetry path L → Γ → X → W → K. The valence band maximum occurs at Γ, while the conduction band minimum lies along Γ–X, confirming an indirect band gap of ~0.61 eV.*
+
+---
+
+### Density of States (DOS)
+
+![DOS](results/si_dos.png)
+
+*Figure: Total density of states (DOS) of silicon. A clear energy region with zero states is observed between the valence and conduction bands, confirming a band gap of ~0.6 eV consistent with the band structure.*
+---
+
+### Projected Density of States (PDOS)
+
+![PDOS](results/si_pdos.png)
+
+*Figure: Projected density of states showing s and p orbital contributions. The lower valence region contains stronger s character, while the upper valence and conduction regions are dominated by p states, indicating sp³ hybridization.*
+
+---
+
+### Charge Density (3D Isosurface)
+
+![Charge density isosurface](results/si_charge_isosurface.png)
+
+*Figure: Isosurface of the total charge density of silicon. The continuous electron density between neighboring atoms indicates shared electrons and directional covalent bonding in the diamond cubic structure.*
+
+---
+
+### Charge Density (2D Slice)
+
+![Charge density slice](results/si_charge_slice.png)
+
+*Figure: Two-dimensional slice of the charge density through a Si–Si bond. The continuous electron density between atoms forms a charge bridge, providing direct real-space evidence of covalent bonding and sp³ hybridization.*
 
 ---
 
 ## Physical Interpretation
 
-- Silicon exhibits an **indirect band gap semiconductor behavior**  
-- Valence band maximum at Γ  
-- Conduction band minimum along Γ–X  
-- PBE-DFT underestimates band gap compared to experiment (~1.1 eV), as expected  
+- Silicon is an **indirect band gap semiconductor**
+- PBE underestimates the experimental band gap (~1.1 eV)
+- PDOS reveals **s–p hybridization**
+- Charge density confirms **directional covalent bonding**
+
+Combined analysis:
+
+> Energy-space (PDOS) + real-space (charge density) → consistent sp³ hybridization picture
 
 ---
-## PDOS
 
-The PDOS calculation used 8 atomic projector functions for the 2-atom Si cell: one s and three p projectors per atom. The projection analysis shows that the lowest Gamma-point valence state is predominantly s-like and symmetrically distributed over both Si atoms, while the higher threefold-degenerate states are predominantly p-like. Löwdin population analysis gives about 3.96 projected valence electrons per Si atom, with approximately 1.17 s-like and 2.79 p-like character, and a small spilling parameter of 0.009, indicating a high-quality projection basis.
-
----
 ## Project Structure
-
-inputs/ → Quantum ESPRESSO input files
-outputs/ → raw calculation outputs
+inputs/ → QE input files
+outputs/ → raw outputs
 pseudo/ → pseudopotentials
-results/ → processed plots and extracted results
-notes/ → detailed physics and methodology notes
+results/ → plots and figures
+notes/ → detailed methodology notes
+scripts/ → plotting scripts
+---
 
 
 ---
 
 ## Tools Used
 
-- Quantum ESPRESSO (pw.x, bands.x, dos.x)  
-- GNUplot (visualization)  
-- Bash utilities (awk, grep)  
+- Quantum ESPRESSO (pw.x, bands.x, dos.x, projwfc.x, pp.x)
+- Python (NumPy, Matplotlib)
+- XCrySDen (visualization)
+- Bash utilities
 
 ---
 
 ## Key Learnings
 
-- SCF convergence control (mixing schemes, diagonalization methods)  
-- Structural optimization using BFGS algorithm  
-- k-space sampling and high-symmetry path selection  
-- Extraction and validation of band gap  
-- Complementary roles of band structure and DOS  
-- Limitations of semi-local DFT (PBE)
--  PDOS/projection output confirms the chemical picture of silicon (SP3 Hybridization) almost accurately, since the spilling parameter was found to be 0.009
+- SCF convergence and numerical stability
+- Structural optimization using BFGS
+- k-point sampling in reciprocal space
+- Interpretation of band structure and DOS
+- Orbital-resolved analysis via PDOS
+- Real-space bonding analysis via charge density
 
 ---
 
-## Author
+## Limitations
 
-Md. Saidul Islam  
+- PBE underestimates band gap
+- PDOS depends on projection basis
+- Charge density is total (not difference density)
+
+---
+
+**Md. Saidul Islam**  
