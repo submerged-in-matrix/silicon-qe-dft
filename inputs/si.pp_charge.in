@@ -1,0 +1,16 @@
+##read the converged silicon calculation from ./tmp/, extract the total charge density, and export it as a 3D Gaussian cube file called si_charge.cube
+
+&INPUTPP !pp.x, a QE post-processing solver, this part says what to extract
+    prefix = 'si',
+    outdir = './tmp/',
+    filplot = 'si_charge',
+    plot_num = 0 !Take the total electronic charge density from the converged SCF result.
+/
+&PLOT !This part says how to extract
+    nfile = 1
+    filepp(1) = 'si_charge',
+    weight(1) = 1.0,
+    iflag = 3, !dimensionality/type of output grid
+    output_format = 5, !output file format, here (=5) .xsf format for XCrysDen ; (=6) Gaussian cube format
+    fileout = 'si_charge.xsf'
+/

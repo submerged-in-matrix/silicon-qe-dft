@@ -1,0 +1,7 @@
+&PROJWFC  !QE solver for projecting Kohn–Sham states onto atomic-like orbitals from the pseudopotential and writing projected DOS files
+    prefix = 'si',
+    outdir = './tmp/',
+    DeltaE = 0.01, !Energy grid spacing
+    degauss = 0.02, !Guassian broadening width
+    ngauss = 0 !Selects gaussian smearing type
+/

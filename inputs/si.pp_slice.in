@@ -1,0 +1,20 @@
+&INPUTPP
+    prefix = 'si',
+    outdir = './tmp/',
+    filplot = 'si_charge_slice',
+    plot_num = 0
+/
+&PLOT
+    nfile = 1,
+    filepp(1) = 'si_charge_slice',
+    weight(1) = 1.0,
+    iflag = 2,
+    output_format = 7,  !grid format (x, y, ρ)
+    fileout = 'si_charge_slice.dat',
+    e1(1) = 0.50, e1(2) = 0.50, e1(3) = 0.50, !first direction of the plane, roughly aong [111], his is the Si–Si bond direction
+    e2(1) = 0.50, e2(2) = -0.50, e2(3) = 0.00, !defines the orientation of the slice, perpendicular to bond (in-plane)
+    x0(1) = 0.00, x0(2) = 0.00, x0(3) = 0.00, !starting point of the plane, chosen at one Si atom
+    nx = 200, !grid resoulution
+    ny = 200 1grid resoulution
+/
+##So the plane is:passing through an atom, aligned along the bond direction, spanning across the bonding region
